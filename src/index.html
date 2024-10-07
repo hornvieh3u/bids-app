@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Bids App</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="icon" type="image/ico" href="/img/favicon.ico">
+</head>
+
+<body>
+    <div class="theme-color">
+        <select id="toggle-mode">
+            <option value="light">Light</option>
+            <option value="dark" selected>Dark</option>
+            <option value="system">System</option>
+        </select>
+    </div>
+    <div class="flex-view">
+        <div class="bid-content">
+            <div class="alert"></div>
+            <div class="form-group">
+                <label for="client-username">client username:</label>
+                <input id="client-username" />
+            </div>
+            <div class="form-group">
+                <label for="client-country">client country:</label>
+                <input id="client-country" />
+            </div>
+            <div class="form-group">
+                <label for="client-timezone">client timezone:</label>
+                <input id="client-timezone" />
+            </div>
+            <div class="form-group">
+                <label for="client-call-time">client call time:</label>
+                <input id="client-call-time" type="datetime-local" />
+            </div>
+            <div class="form-group">
+                <label for="client-job">client job:</label>
+                <input id="client-job" />
+            </div>
+            <div class="form-group">
+                <label for="chat-server">chat server:</label>
+                <input id="chat-server" />
+            </div>
+            <div class="form-group">
+                <label for="comment">comment:</label>
+                <textarea id="comment" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="platforms">platforms:</label>
+                <select id="platforms"></select>
+            </div>
+            <div class="button-group">
+                <button id="save">Save</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+        <div class="bid-summary">
+            <div>Total Bids: <span id="total-bids-count">0</span></div>
+            <div>Today Bids: <span id="today-bids-count">0</span></div>
+            <div>Responsed Bids: <span id="responsed-bids-count">0</span></div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
+</html>

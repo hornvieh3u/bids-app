@@ -1,0 +1,27 @@
+{
+  "name": "bid-app",
+  "version": "1.0.0",
+  "description": "bid app to store data",
+  "main": "main.js",
+  "build": {
+    "win": {
+      "icon": "img/bid.ico"
+    },
+    "mac": {
+      "icon": "img/bid.icns"
+    },
+    "linux": {
+      "icon": "img/bid.png"
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "james",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^32.1.2",
+    "sqlite3": "^5.1.7"
+  }
+}
