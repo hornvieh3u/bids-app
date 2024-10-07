@@ -119,7 +119,6 @@ ipcMain.handle("bid-data:update", (_, data) => {
         );
         return true;
     } catch (error) {
-        console.log(error)
         return false;
     }
 })

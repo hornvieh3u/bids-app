@@ -26,7 +26,6 @@ document.querySelector("#update").addEventListener("click", async () => {
 
     await window.bidData.update(updateBidData);
     cancelModal();
-    location.reload();
 })
 
 document.querySelector("#client-username").addEventListener("change", (e) => {
@@ -67,6 +66,7 @@ function clearFormValues() {
     document.querySelector("#client-job").value = ""
     document.querySelector("#chat-server").value = ""
     document.querySelector("#comment").value = ""
+    location.reload();
 }
 
 function showAlert(message) {

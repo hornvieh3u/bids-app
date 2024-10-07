@@ -19,7 +19,7 @@ ipcRenderer.on("init", (_, platforms) => {
 ipcRenderer.on("bids", (_, bids) => {
     let tbody = "";
     bids.forEach(bid => {
-        for (let i = 0; i < 100; i++) {
+        // for (let i = 0; i < 100; i++) {
         tbody += `<tr>
             <td>${bid.client_username}</td>
             <td>${bid.chat_server}</td>
@@ -38,7 +38,7 @@ ipcRenderer.on("bids", (_, bids) => {
                 >Edit</button>
             </td>
         </tr>`;
-        }
+        // }
     });
 
     if (tbody) document.querySelector("tbody").innerHTML = tbody;

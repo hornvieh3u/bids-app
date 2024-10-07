@@ -16,13 +16,17 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
+    "build": "electron-builder -w",
+    "postinstall": "electron-builder install-app-deps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "james",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^32.1.2",
-    "sqlite3": "^5.1.7"
+    "@electron/rebuild": "^3.6.2",
+    "electron": "^32.1.2"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6"
   }
 }
