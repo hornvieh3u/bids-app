@@ -57,8 +57,19 @@ function closeApp(e) {
 }
 
 function initData() {
-    db.all("select * from chat_platforms", [], (_, rows) => {
+    db.all("SELECT * FROM chat_platforms", [], (_, rows) => {
         win.webContents.send('init', rows);
+    })
+    db.all(`SELECT
+                "clients".*,
+                "chat_platforms".platform_name,
+                "chat_platforms".user_name 
+            FROM
+                "clients",
+                "chat_platforms" 
+            WHERE
+                clients.chat_platform_id = chat_platforms.id`, [], (_, rows) => {
+        win.webContents.send('bids', rows);
     })
 }
 
@@ -87,9 +98,28 @@ ipcMain.handle('dark-mode:toggle', (_, theme) => {
 
 ipcMain.handle("bid-data:update", (_, data) => {
     try {
-        
+        db.run(
+            `UPDATE "main"."clients"
+            SET
+                "client_country" = ?,
+                "client_timezone" = ?,
+                "client_call_time" = ?,
+                "client_job" = ?,
+                "comment" = ?
+            WHERE
+                id = ?`,
+            [
+                data.client_country,
+                data.client_timezone,
+                data.client_call_time,
+                data.client_job,
+                data.comment,
+                data.id
+            ]
+        );
         return true;
     } catch (error) {
+        console.log(error)
         return false;
     }
 })
@@ -110,17 +140,11 @@ ipcMain.handle("bid-data:save", (_, data) => {
                 "comment",
                 "created_at"
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            VALUES (?, "", "", "", "", ?, ?, 0, "", ?)`,
             [
                 data.client_username,
-                data.client_country,
-                data.client_timezone,
-                data.client_call_time,
-                data.client_job,
                 data.chat_platform_id,
                 data.chat_server,
-                0,
-                data.comment,
                 Date.now()
             ]
         );
