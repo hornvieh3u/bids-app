@@ -12,15 +12,17 @@ let db = new sqlite3.Database('E:/James/bids.db', sqlite3.OPEN_READWRITE, (err) 
 
 let win;
 let willClose = false;
+let width = 550;
+let height = 600;
 
 function createWindow() {
     let display = screen.getPrimaryDisplay();
 
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        x: display.workArea.width - 800,
-        y: display.workArea.height - 600,
+        width,
+        height,
+        x: display.workArea.width - width,
+        y: display.workArea.height - height,
         webPreferences: {
             preload: path.join(__dirname, 'src/preload.js')
         },

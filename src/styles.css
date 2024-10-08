@@ -85,13 +85,13 @@ table {
 
 .bid-update .modal {
     position: absolute;
-    width: 600px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     border: 1px solid grey;
-    left: calc(50% - 300px);
+    left: calc(50% - 250px);
     top: 100px;
     box-sizing: border-box;
     box-shadow: 1px 1px 5px grey;
@@ -101,7 +101,8 @@ table {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    font-size: 24px;
+    font-size: 20px;
+    margin-top: 3px;
 }
 
 .hide {
