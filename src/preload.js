@@ -12,6 +12,8 @@ contextBridge.exposeInMainWorld('bidData', {
 })
 
 ipcRenderer.on("init", (_, platforms) => {
+    if (document.getElementById("platforms").innerHTML != "") return;
+
     platforms.forEach(platform => {
         document.getElementById("platforms").innerHTML += `<option value="${platform.id}">${platform.user_name} - ${platform.platform_name}</option>`
     });

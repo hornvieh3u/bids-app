@@ -71,7 +71,9 @@ function initData() {
                 "clients",
                 "chat_platforms" 
             WHERE
-                clients.chat_platform_id = chat_platforms.id`, [], (_, rows) => {
+                clients.chat_platform_id = chat_platforms.id
+            ORDER BY
+                "clients".created_at DESC`, [], (_, rows) => {
         win.webContents.send('bids', rows);
     })
     db.all("SELECT count(*) total_count FROM clients", [], (_, rows) => {

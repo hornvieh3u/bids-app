@@ -26,10 +26,6 @@ table {
   table select {
     width: 100%;
   }
-  table tbody {
-    max-height: 400px;
-    overflow: scroll;
-  }
 
 .theme-color {
     position: absolute;
@@ -70,7 +66,7 @@ table {
 .bid-list {
     margin-top: 15px;
     height: calc(100vh - 80px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .bid-update::before {
