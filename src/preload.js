@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('bidData', {
     getOne: (id) => ipcRenderer.invoke('bid-data:getone', id),
     save: (data) => ipcRenderer.invoke('bid-data:save', data),
     update: (data) => ipcRenderer.invoke('bid-data:update', data),
+    refresh: () => ipcRenderer.invoke('bid-data:refresh')
 })
 
 ipcRenderer.on("init", (_, platforms) => {
@@ -20,7 +21,7 @@ ipcRenderer.on("bids", (_, bids) => {
     let tbody = "";
     bids.forEach(bid => {
         // for (let i = 0; i < 100; i++) {
-        tbody += `<tr>
+        tbody += `<tr style="${bid.is_responsed ? "color: lightgreen" : ""}">
             <td>${bid.client_username}</td>
             <td>${bid.chat_server}</td>
             <td>${bid.user_name} - ${bid.platform_name}</td>
@@ -42,4 +43,16 @@ ipcRenderer.on("bids", (_, bids) => {
     });
 
     if (tbody) document.querySelector("tbody").innerHTML = tbody;
+})
+
+ipcRenderer.on("total_count", (_, totalCnt) => {
+    document.getElementById("total-bids-count").innerText = totalCnt;
+})
+
+ipcRenderer.on("today_count", (_, todayCnt) => {
+    document.getElementById("today-bids-count").innerText = todayCnt;
+})
+
+ipcRenderer.on("responsed_count", (_, responsedCnt) => {
+    document.getElementById("responsed-bids-count").innerText = responsedCnt;
 })

@@ -66,7 +66,8 @@ function clearFormValues() {
     document.querySelector("#client-job").value = ""
     document.querySelector("#chat-server").value = ""
     document.querySelector("#comment").value = ""
-    location.reload();
+
+    window.bidData.refresh();
 }
 
 function showAlert(message) {

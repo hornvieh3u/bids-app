@@ -71,6 +71,20 @@ function initData() {
                 clients.chat_platform_id = chat_platforms.id`, [], (_, rows) => {
         win.webContents.send('bids', rows);
     })
+    db.all("SELECT count(*) total_count FROM clients", [], (_, rows) => {
+        win.webContents.send('total_count', rows[0].total_count)
+    });
+    db.all(`SELECT count(*) today_count FROM clients WHERE created_at > ${getTodayTimestamp()}`, [], (_, rows) => {
+        win.webContents.send('today_count', rows[0].today_count)
+    });
+    db.all("SELECT count(*) responsed_count FROM clients where is_responsed = 1", [], (_, rows) => {
+        win.webContents.send('responsed_count', rows[0].responsed_count)
+    });
+}
+
+function getTodayTimestamp() {
+    let today = new Date();
+    return new Date(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`).getTime();
 }
 
 function showNotification(body) {
@@ -105,7 +119,8 @@ ipcMain.handle("bid-data:update", (_, data) => {
                 "client_timezone" = ?,
                 "client_call_time" = ?,
                 "client_job" = ?,
-                "comment" = ?
+                "comment" = ?,
+                "is_responsed" = 1
             WHERE
                 id = ?`,
             [
@@ -151,4 +166,8 @@ ipcMain.handle("bid-data:save", (_, data) => {
     } catch (error) {
         return false;
     }
+})
+
+ipcMain.handle("bid-data:refresh", () => {
+    initData();
 })
