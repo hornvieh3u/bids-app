@@ -25,7 +25,8 @@ function createWindow() {
             preload: path.join(__dirname, 'src/preload.js')
         },
         autoHideMenuBar: true,
-        icon: path.join(__dirname, 'img/bid.png')
+        icon: path.join(__dirname, 'img/bid.png'),
+        alwaysOnTop: true
     })
 
     win.loadFile('src/index.html')
