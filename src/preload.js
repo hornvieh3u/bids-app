@@ -22,8 +22,7 @@ ipcRenderer.on("init", (_, platforms) => {
 ipcRenderer.on("bids", (_, bids) => {
     let tbody = "";
     bids.forEach(bid => {
-        // for (let i = 0; i < 100; i++) {
-        tbody += `<tr style="${bid.is_responsed ? "color: lightgreen" : ""}">
+        tbody += `<tr data-is-responsed="${bid.is_responsed}" data-created-at="${bid.created_at}" style="${bid.is_responsed ? "color: lightgreen" : ""}">
             <td>${bid.client_username}</td>
             <td>${bid.chat_server}</td>
             <td>${bid.user_name} - ${bid.platform_name}</td>
@@ -41,7 +40,6 @@ ipcRenderer.on("bids", (_, bids) => {
                 >Edit</button>
             </td>
         </tr>`;
-        // }
     });
 
     if (tbody) document.querySelector("tbody").innerHTML = tbody;

@@ -29,9 +29,7 @@ document.querySelector("#update").addEventListener("click", async () => {
 })
 
 document.querySelector("#client-username").addEventListener("change", (e) => {
-    for(let child of document.querySelector("tbody").children) {
-        child.style.display = child.getHTML().indexOf(e.target.value) === -1 ? "none" : "table-row";
-    }
+    filterby("search", e.target.value);
 })
 
 document.querySelector("#cancel").addEventListener("click", cancelModal)
@@ -64,7 +62,7 @@ function clearFormValues() {
     document.querySelector("#client-timezone").value = ""
     document.querySelector("#client-call-time").value = ""
     document.querySelector("#client-job").value = ""
-    document.querySelector("#chat-server").value = ""
+    // document.querySelector("#chat-server").value = ""
     document.querySelector("#comment").value = ""
 
     window.bidData.refresh();
@@ -75,4 +73,24 @@ function showAlert(message) {
     document.querySelector(".alert").style.visibility = "visible";
     if (alertTimer) clearTimeout(alertTimer);
     alertTimer = setTimeout(() => { document.querySelector(".alert").style.visibility = "hidden"; }, 3000);
+}
+
+function filterby(type, value) {
+    for(let child of document.querySelector("tbody").children) {
+        if (type === "search") {
+            child.style.display = child.getHTML().indexOf(value) === -1 ? "none" : "table-row";
+        } else if (type === "responsed") {
+            child.style.display = child.getAttribute("data-is-responsed") != 1 ? "none" : "table-row";
+        } else if (type === "timestamp") {
+            console.log(parseInt(child.getAttribute("data-created-at")), getTodayTimestamp());
+            child.style.display = parseInt(child.getAttribute("data-created-at")) < getTodayTimestamp() ? "none" : "table-row";
+        } else {
+            child.style.display = "table-row";
+        }
+    }
+}
+
+function getTodayTimestamp() {
+    let today = new Date();
+    return new Date(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`).getTime();
 }

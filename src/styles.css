@@ -96,8 +96,8 @@ table {
 .bid-summary {
     display: flex;
     flex-direction: row;
-    gap: 20px;
-    font-size: 20px;
+    gap: 15px;
+    font-size: 18px;
     margin-top: 3px;
 }
 
