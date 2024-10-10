@@ -25,7 +25,7 @@ ipcRenderer.on("bids", (_, bids) => {
         tbody += `<tr data-is-responsed="${bid.is_responsed}" data-created-at="${bid.created_at}" style="${bid.is_responsed ? "color: lightgreen" : ""}">
             <td>${bid.client_username}</td>
             <td class="chat-server-name">${bid.chat_server}</td>
-            <td>${bid.user_name} - ${bid.platform_name}</td>
+            <td>${bid.display_name} - ${bid.platform_name}</td>
             <td>
                 <button
                     onclick="showModal(
