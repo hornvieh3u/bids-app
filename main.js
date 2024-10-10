@@ -60,9 +60,11 @@ function closeApp(e) {
 }
 
 function initData() {
+    // platforms
     db.all("SELECT * FROM chat_platforms", [], (_, rows) => {
         win.webContents.send('init', rows);
     })
+    // bids data
     db.all(`SELECT
                 "clients".*,
                 "chat_platforms".platform_name,
@@ -76,12 +78,15 @@ function initData() {
                 "clients".created_at DESC`, [], (_, rows) => {
         win.webContents.send('bids', rows);
     })
+    // total bid count
     db.all("SELECT count(*) total_count FROM clients", [], (_, rows) => {
         win.webContents.send('total_count', rows[0].total_count)
     });
+    // today bid count
     db.all(`SELECT count(*) today_count FROM clients WHERE created_at > ${getTodayTimestamp()}`, [], (_, rows) => {
         win.webContents.send('today_count', rows[0].today_count)
     });
+    // responsed bid count
     db.all("SELECT count(*) responsed_count FROM clients where is_responsed = 1", [], (_, rows) => {
         win.webContents.send('responsed_count', rows[0].responsed_count)
     });

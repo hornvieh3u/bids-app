@@ -109,6 +109,26 @@ table {
     filter: blur(5px);
 }
 
+.chat-server-list {
+    position: absolute;
+    background-color: #252424;
+    padding: 10px;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    height: 400px;
+    overflow-y: auto;
+    }
+    .chat-server-list a {
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+    }
+    .chat-server-list a:hover {
+        background-color: #3b3b3b;
+    }
+
 @media (prefers-color-scheme: dark) {
     body {
         background: #252424;

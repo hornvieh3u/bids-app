@@ -15,7 +15,7 @@ ipcRenderer.on("init", (_, platforms) => {
     if (document.getElementById("platforms").innerHTML != "") return;
 
     platforms.forEach(platform => {
-        document.getElementById("platforms").innerHTML += `<option value="${platform.id}">${platform.user_name} - ${platform.platform_name}</option>`
+        document.getElementById("platforms").innerHTML += `<option value="${platform.id}">${platform.display_name} - ${platform.platform_name}</option>`
     });
 })
 
@@ -24,7 +24,7 @@ ipcRenderer.on("bids", (_, bids) => {
     bids.forEach(bid => {
         tbody += `<tr data-is-responsed="${bid.is_responsed}" data-created-at="${bid.created_at}" style="${bid.is_responsed ? "color: lightgreen" : ""}">
             <td>${bid.client_username}</td>
-            <td>${bid.chat_server}</td>
+            <td class="chat-server-name">${bid.chat_server}</td>
             <td>${bid.user_name} - ${bid.platform_name}</td>
             <td>
                 <button

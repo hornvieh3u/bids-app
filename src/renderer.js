@@ -34,6 +34,20 @@ document.querySelector("#client-username").addEventListener("change", (e) => {
 
 document.querySelector("#cancel").addEventListener("click", cancelModal)
 
+document.querySelector("#chat-server").addEventListener("focus", () => {
+    showChatServers();
+})
+
+document.querySelector("#chat-server").addEventListener("keyup", (e) => {
+    showChatServers(e.target.value);
+})
+
+document.querySelector("#chat-server").addEventListener("focusout", () => {
+    setTimeout(() => {
+        document.querySelector(".chat-server-list").style.display = "none";
+    }, 100);
+})
+
 // ##### Act Functions #####
 let alertTimer;
 
@@ -93,4 +107,30 @@ function filterby(type, value) {
 function getTodayTimestamp() {
     let today = new Date();
     return new Date(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`).getTime() + today.getTimezoneOffset() * 60 * 1000;
+}
+
+function showChatServers(search) {
+    let chatServerDoms = document.getElementsByClassName("chat-server-name");
+    let chatServerArr = [];
+    let chatServerHTML = "";
+    for (let i = 0; i < chatServerDoms.length; i++) {
+        let chatServer = chatServerDoms[i].getHTML();
+        if (chatServerArr.includes(chatServer) || (search && chatServer.indexOf(search) === -1)) continue;
+
+        chatServerHTML += `<a href="javascript:selectChatServer('${chatServer}');">${chatServer}</a>`;
+        chatServerArr.push(chatServer);
+    }
+
+    if (!chatServerHTML) {
+        document.querySelector(".chat-server-list").style.display = "none";
+        return;
+    }
+
+    document.querySelector(".chat-server-list").style.display = "flex";
+    document.querySelector(".chat-server-list").innerHTML = chatServerHTML;
+}
+
+function selectChatServer(chatServerName) {
+    document.querySelector("#chat-server").value = chatServerName;
+    document.querySelector(".chat-server-list").style.display = "none";
 }
