@@ -68,7 +68,8 @@ function initData() {
     db.all(`SELECT
                 "clients".*,
                 "chat_platforms".platform_name,
-                "chat_platforms".user_name 
+                "chat_platforms".user_name,
+                "chat_platforms".display_name
             FROM
                 "clients",
                 "chat_platforms" 
