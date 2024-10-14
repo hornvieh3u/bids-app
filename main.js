@@ -21,7 +21,7 @@ function createWindow() {
     win = new BrowserWindow({
         width,
         height,
-        x: display.workArea.width - width,
+        x: display.workArea.width - width - 400,
         y: display.workArea.height - height,
         webPreferences: {
             preload: path.join(__dirname, 'src/preload.js')
