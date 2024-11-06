@@ -92,11 +92,10 @@ function showAlert(message) {
 function filterby(type, value) {
     for(let child of document.querySelector("tbody").children) {
         if (type === "search") {
-            child.style.display = child.getHTML().indexOf(value) === -1 ? "none" : "table-row";
+            child.style.display = child.getHTML().toLowerCase().indexOf(value.toLowerCase()) === -1 ? "none" : "table-row";
         } else if (type === "responsed") {
             child.style.display = child.getAttribute("data-is-responsed") != 1 ? "none" : "table-row";
         } else if (type === "timestamp") {
-            console.log(parseInt(child.getAttribute("data-created-at")), getTodayTimestamp());
             child.style.display = parseInt(child.getAttribute("data-created-at")) < getTodayTimestamp() ? "none" : "table-row";
         } else {
             child.style.display = "table-row";
