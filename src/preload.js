@@ -22,8 +22,9 @@ ipcRenderer.on("init", (_, platforms) => {
 ipcRenderer.on("bids", (_, bids) => {
     let tbody = "";
     bids.forEach(bid => {
+        let bidCreateAt = new Date(bid.created_at);
         tbody += `<tr data-is-responsed="${bid.is_responsed}" data-created-at="${bid.created_at}" style="${bid.is_responsed ? "color: lightgreen" : ""}">
-            <td>${bid.client_username}</td>
+            <td>${bid.client_username}<br /><span style="font-size: 12px;">(${bidCreateAt.toLocaleDateString()} ${bidCreateAt.toLocaleTimeString()})</span></td>
             <td class="chat-server-name">${bid.chat_server}</td>
             <td>${bid.display_name} - ${bid.platform_name}</td>
             <td>
