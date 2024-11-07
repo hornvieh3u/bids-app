@@ -1,6 +1,6 @@
 {
   "name": "bid-app",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "bid app to store data",
   "main": "main.js",
   "build": {
