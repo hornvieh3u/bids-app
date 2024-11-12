@@ -95,7 +95,7 @@ function initData() {
 
 function getTodayTimestamp() {
     let today = new Date();
-    return new Date(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`).getTime() - today.getTimezoneOffset() * 60 * 1000;
+    return new Date(`${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`).getTime() + today.getTimezoneOffset() * 60 * 1000;
 }
 
 function showNotification(body) {
