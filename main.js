@@ -12,8 +12,8 @@ let db = new sqlite3.Database('E:/James/bids.db', sqlite3.OPEN_READWRITE, (err) 
 
 let win;
 let willClose = false;
-let width = 550;
-let height = 600;
+let width = 650;
+let height = 750;
 
 function createWindow() {
     let display = screen.getPrimaryDisplay();
@@ -61,7 +61,7 @@ function closeApp(e) {
 
 function initData() {
     // platforms
-    db.all("SELECT * FROM chat_platforms", [], (_, rows) => {
+    db.all("SELECT * FROM chat_platforms WHERE is_deleted='n'", [], (_, rows) => {
         win.webContents.send('init', rows);
     })
     // bids data

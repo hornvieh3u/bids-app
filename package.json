@@ -1,6 +1,6 @@
 {
   "name": "bid-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "bid app to store data",
   "main": "main.js",
   "build": {
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "rmdir /S /Q dist && electron-builder -w",
+    "build": "electron-builder -w",
     "postinstall": "electron-builder install-app-deps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
